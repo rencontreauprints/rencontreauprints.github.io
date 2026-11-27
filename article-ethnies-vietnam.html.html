@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>54 peuples, une âme — Rencontre au Printemps</title>
+  <style>
+    :root {
+      --lin:    #F7F4EF;
+      --pierre: #E8E2D9;
+      --mousse: #6B7C5C;
+      --terre:  #8C6E50;
+      --encre:  #2E2B27;
+      --gris:   #9A948C;
+      --doux:   #B5A99A;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: var(--lin);
+      color: var(--encre);
+      line-height: 1.85;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--lin);
+      border-bottom: 1px solid var(--pierre);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 52px;
+    }
+    .nav-logo {
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--mousse);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 40px; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .75rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gris);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--mousse); }
+
+    /* HERO ARTICLE */
+    .article-hero {
+      position: relative;
+      height: 70vh;
+      overflow: hidden;
+      display: flex; align-items: flex-end;
+    }
+    .article-hero img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .article-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(46,43,39,.75) 0%, transparent 60%);
+    }
+    .article-hero-content {
+      position: relative;
+      max-width: 760px;
+      margin: 0 auto 60px;
+      padding: 0 24px;
+      width: 100%;
+    }
+    .article-cat {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .68rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.65);
+      margin-bottom: 14px;
+      display: block;
+    }
+    .article-hero-content h1 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 400;
+      font-style: italic;
+      color: white;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .article-meta {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .75rem;
+      color: rgba(255,255,255,.5);
+      letter-spacing: .05em;
+    }
+
+    /* CORPS */
+    .article-body {
+      max-width: 720px;
+      margin: 70px auto 100px;
+      padding: 0 24px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      margin-bottom: 1.6rem;
+      color: var(--encre);
+    }
+
+    .article-body h2 {
+      font-size: 1.5rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--mousse);
+      margin: 3rem 0 1.2rem;
+      line-height: 1.3;
+    }
+
+    .article-body h3 {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .78rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--doux);
+      margin: 2.5rem 0 1rem;
+    }
+
+    /* PHOTO DANS LE CORPS */
+    .article-img {
+      margin: 3rem -60px;
+      position: relative;
+    }
+    .article-img img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      display: block;
+    }
+    .article-img figcaption {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .72rem;
+      color: var(--gris);
+      text-align: center;
+      padding: 10px 0 0;
+      letter-spacing: .04em;
+    }
+
+    /* PHOTO PETITE */
+    .article-img-small {
+      margin: 2.5rem 0;
+    }
+    .article-img-small img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      display: block;
+    }
+    .article-img-small figcaption {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .72rem;
+      color: var(--gris);
+      text-align: center;
+      padding: 10px 0 0;
+      letter-spacing: .04em;
+    }
+
+    /* TABLEAU */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 2rem 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .8rem;
+    }
+    th {
+      background: var(--mousse);
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+      letter-spacing: .05em;
+      font-weight: 500;
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--pierre);
+      color: var(--encre);
+      vertical-align: top;
+    }
+    tr:nth-child(even) td { background: rgba(232,226,217,.3); }
+
+    /* CITATION */
+    blockquote {
+      border-left: 2px solid var(--mousse);
+      margin: 2.5rem 0;
+      padding: 0 0 0 24px;
+      font-style: italic;
+      color: var(--gris);
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    /* SEPARATEUR */
+    .sep {
+      border: none;
+      border-top: 1px solid var(--pierre);
+      margin: 3rem 0;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--pierre);
+      padding: 28px 52px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-logo {
+      font-style: italic;
+      color: var(--mousse);
+      font-size: .88rem;
+    }
+    .footer-copy {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .68rem;
+      color: var(--doux);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Rencontre au Printemps</a>
+  <ul class="nav-links">
+    <li><a href="#">Visages</a></li>
+    <li><a href="#">Endroits</a></li>
+    <li><a href="#">Ma table</a></li>
+    <li><a href="#">Ce que j'ai vécu</a></li>
+    <li><a href="#">Moi</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="article-hero">
+  <img src="https://drive.google.com/uc?export=view&id=1RMEUzb4db5wDu0EW3rJW2jCrQGaepVkT" alt="Costume féminin Tày"/>
+  <div class="article-hero-overlay"></div>
+  <div class="article-hero-content">
+    <span class="article-cat">Visages</span>
+    <h1>54 peuples, une âme.<br/>La mosaïque ethnique du Vietnam</h1>
+    <span class="article-meta">Par Huyền · Novembre 2026 · 8 min de lecture</span>
+  </div>
+</header>
+
+<!-- CORPS -->
+<article class="article-body">
+
+  <p>On parle souvent du Vietnam comme d'un pays. On devrait peut-être dire : comme d'un monde.</p>
+
+  <p>Car derrière l'unité apparente d'une nation se cache l'une des diversités humaines les plus riches d'Asie du Sud-Est. Cinquante-quatre groupes ethniques officiellement reconnus, chacun avec sa propre langue, ses propres vêtements, ses propres rituels, sa propre façon de construire une maison ou de cuire le riz. Cinquante-quatre façons d'être vietnamien.</p>
+
+  <h2>Un pays, 54 peuples</h2>
+
+  <p>Le peuple Kinh, majoritaire, représente environ 85 à 86 % de la population. Les 53 groupes ethniques minoritaires, soit 14 à 15 % des Vietnamiens, vivent principalement dans les régions montagneuses, les hauts plateaux et les zones frontalières, du nord au sud du pays. On les appelle les <em>dân tộc thiểu số</em>, les peuples des minorités. Mais le mot "minorité" ne dit rien de leur richesse.</p>
+
+  <p>Selon les travaux de l'Institut d'ethnologie de l'Académie des sciences sociales du Vietnam, ces groupes sont classés en huit grands groupes linguistiques. Chacun possède ses propres origines historiques, son territoire et ses caractéristiques culturelles distinctes. Ensemble, ils composent un paysage humain d'une profondeur remarquable.</p>
+
+  <figure class="article-img">
+    <img src="https://drive.google.com/uc?export=view&id=1otLYJBEiftgXiaQv60E1Csevu6SsGHIa" alt="Chant Then du peuple Tày"/>
+    <figcaption>Le chant Then, tradition orale et musicale du peuple Tày, transmis de génération en génération.</figcaption>
+  </figure>
+
+  <h2>Les huit familles linguistiques</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Groupe</th>
+          <th>Famille</th>
+          <th>Principaux peuples</th>
+          <th>Habitat</th>
+          <th>Traits culturels</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Viet-Muong</td><td>Austroasiatique</td><td>Muong, Tho, Chut</td><td>Hoa Binh, Thanh Hoa</td><td>Pilotis, riziculture, culte des ancêtres</td></tr>
+        <tr><td>Tay-Thai</td><td>Tai-Kadai</td><td>Tay, Thai, Nung, Giay</td><td>Nord-Est et Nord-Ouest</td><td>Danse Xoe, brocart, chant Then</td></tr>
+        <tr><td>Mon-Khmer</td><td>Austroasiatique</td><td>Khmer, Gia Rai, Ede, Ba Na</td><td>Hauts plateaux du Centre</td><td>Maisons longues, gongs, cérémonie du buffle</td></tr>
+        <tr><td>Hmong-Dao</td><td>Hmong-Mien</td><td>Hmong, Dao, Pa Then</td><td>Hautes montagnes du nord</td><td>Brocart éclatant, chamanisme</td></tr>
+        <tr><td>Tibéto-Birmans</td><td>Sino-Tibétain</td><td>Ha Nhi, Lo Lo, Phu La</td><td>Extrême-nord</td><td>Costumes brodés, agriculture sur brûlis</td></tr>
+        <tr><td>Han</td><td>Sino-Tibétain</td><td>Hoa, Ngai</td><td>Zones urbaines et côtières</td><td>Commerce, danse du lion, culte des ancêtres</td></tr>
+        <tr><td>Îles du Sud</td><td>Austronésien</td><td>Cham, Raglai, Churu</td><td>Centre-sud et hauts plateaux</td><td>Tours Cham, danses rituelles</td></tr>
+        <tr><td>Ka Dai</td><td>Kadai</td><td>La Chi, Pu Peo, Co Lao</td><td>Montagnes du nord</td><td>Coutumes proches des Tay-Thai</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Une distinction à connaître : Austroasiatique et Austronésien</h2>
+
+  <p>Ces deux familles de langues sont souvent confondues. Pourtant, elles n'ont aucun lien de parenté direct et racontent deux histoires très différentes.</p>
+
+  <p>Les peuples <strong>Austroasiatiques</strong> sont les habitants anciens du continent asiatique. Leurs langues sont parmi les plus vieilles de la région : le khmer, le môn, et le vietnamien lui-même en descendent lointainement. Ce sont les peuples des forêts, des plateaux continentaux, de la terre.</p>
+
+  <p>Les peuples <strong>Austronésiens</strong> viennent des îles : Taiwan, Philippines, Indonésie. Au Vietnam, cinq groupes leur appartiennent : les Cham, Churu, Ede, Gia Rai et Raglai. Leur imaginaire est celui de la mer, du bateau, du voyage.</p>
+
+  <figure class="article-img-small">
+    <img src="https://drive.google.com/uc?export=view&id=18XgJzMDhwrNfwQYZqvTFZnqfeMMLUaD_" alt="Maison longue Ê đê"/>
+    <figcaption>La maison longue du peuple Ê đê, symbole de l'architecture austronésienne des hauts plateaux du Centre.</figcaption>
+  </figure>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th></th><th>Austroasiatique</th><th>Austronésien</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Origines</strong></td><td>Continent asiatique</td><td>Îles d'Asie du Sud-Est</td></tr>
+        <tr><td><strong>Système social</strong></td><td>Plutôt patriarcal</td><td>Souvent matriarcal</td></tr>
+        <tr><td><strong>Symboles</strong></td><td>Forêt, montagne, terre</td><td>Mer, bateau, îles</td></tr>
+        <tr><td><strong>Architecture</strong></td><td>Maisons communautaires rông</td><td>Maisons longues en forme de bateau</td></tr>
+        <tr><td><strong>Au Vietnam</strong></td><td>Ba Na, Xo Dang, Khmer</td><td>Cham, Raglai, Ede, Gia Rai, Churu</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Ce qui les unit</h2>
+
+  <p>Malgré des origines, des langues et des territoires très différents, les minorités ethniques du Vietnam partagent quelque chose d'essentiel : un lien profond avec la nature. Forêts, rivières, rizières en terrasses. Cette proximité avec la terre a façonné une culture matérielle riche et distinctive : maisons sur pilotis, vêtements tissés à la main aux motifs propres à chaque communauté, cuisine à base de produits forestiers et agricoles.</p>
+
+  <figure class="article-img-small">
+    <img src="https://drive.google.com/uc?export=view&id=1P70C-FVGbmCTkDAMrAmPzl0anrxdpyN_" alt="Gongs Ê đê"/>
+    <figcaption>Les gongs, instrument rituel commun à de nombreuses ethnies des hauts plateaux. Classés au patrimoine immatériel de l'UNESCO.</figcaption>
+  </figure>
+
+  <p>Au-delà du quotidien, c'est la vie spirituelle qui cimente ces communautés. Culte des ancêtres, vénération des divinités des montagnes, fêtes communautaires, musique de gong, danses rituelles transmises de génération en génération. Et partout, une même hospitalité : chaleureuse, sincère, profondément ancrée dans la valeur de la solidarité communautaire.</p>
+
+  <blockquote>Séjourner chez l'habitant dans une maison sur pilotis, s'initier au tissage du brocart, écouter une épopée récitée au coin du feu : autant de moments qui permettent de comprendre le Vietnam de l'intérieur, au plus près de ses peuples.</blockquote>
+
+  <figure class="article-img">
+    <img src="https://drive.google.com/uc?export=view&id=1hQkPtydW6JpRd30bYYcHGwTIlOtMb-NW" alt="Fête Lồng Tồng du peuple Tày"/>
+    <figcaption>La fête de Lồng Tồng, fête agricole communautaire du peuple Tày, célèbre le début de la saison des semences.</figcaption>
+  </figure>
+
+  <h2>Cinquante-quatre façons d'être vietnamien</h2>
+
+  <p>Car au fond, derrière la diversité, c'est l'unité qui frappe. Malgré les différences de langue, d'origine et de territoire, les 54 groupes ethniques contribuent ensemble à forger une identité culturelle vivante, accueillante et profondément enracinée dans le temps long de l'histoire vietnamienne.</p>
+
+  <p>Cinquante-quatre façons d'être vietnamien. Autant de raisons de revenir.</p>
+
+</article>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Rencontre au Printemps</span>
+  <span class="footer-copy">© 2026 Huyền Dinh · rencontreauprints.github.io</span>
+</footer>
+
+</body>
+</html>
