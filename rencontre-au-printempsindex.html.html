@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rencontre au Printemps</title>
+  <style>
+    :root {
+      --lin:    #F7F4EF;
+      --pierre: #E8E2D9;
+      --mousse: #6B7C5C;
+      --terre:  #8C6E50;
+      --encre:  #2E2B27;
+      --gris:   #9A948C;
+      --doux:   #B5A99A;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: var(--lin);
+      color: var(--encre);
+      line-height: 1.8;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--lin);
+      border-bottom: 1px solid var(--pierre);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 52px;
+    }
+    .nav-logo {
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--mousse);
+      letter-spacing: .04em;
+    }
+    .nav-links { display: flex; gap: 40px; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .75rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gris);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--mousse); }
+
+    /* HERO */
+    .hero {
+      min-height: 88vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 80px 24px 60px;
+    }
+    .hero-eyebrow {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .72rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--doux);
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(2.6rem, 6.5vw, 5rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--mousse);
+      line-height: 1.18;
+      margin-bottom: 32px;
+    }
+    .hero-deco {
+      width: 36px; height: 1px;
+      background: var(--doux);
+      margin: 0 auto 32px;
+    }
+    .hero-sub {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .9rem;
+      color: var(--gris);
+      max-width: 420px;
+      line-height: 1.9;
+      margin-bottom: 56px;
+    }
+    .hero-scroll {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .68rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--doux);
+    }
+
+    /* SEPARATEUR */
+    .sep {
+      border: none;
+      border-top: 1px solid var(--pierre);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* SECTION LABEL */
+    .section-label {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .68rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--doux);
+      margin-bottom: 10px;
+    }
+
+    /* FEATURED */
+    .featured {
+      max-width: 1000px; margin: 90px auto;
+      padding: 0 24px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center;
+    }
+    .featured-img {
+      aspect-ratio: 4/3;
+      background: var(--pierre);
+      border-radius: 1px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem;
+      opacity: .7;
+      position: relative;
+    }
+    .featured-tag {
+      position: absolute; top: 18px; left: 18px;
+      background: var(--mousse);
+      color: white;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .62rem;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      padding: 5px 11px;
+    }
+    .featured-content h2 {
+      font-size: 1.8rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--encre);
+      line-height: 1.4;
+      margin-bottom: 18px;
+    }
+    .featured-content p {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .88rem;
+      color: var(--gris);
+      margin-bottom: 28px;
+      line-height: 1.8;
+    }
+    .btn-lire {
+      display: inline-block;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .7rem;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--terre);
+      text-decoration: none;
+      border-bottom: 1px solid var(--terre);
+      padding-bottom: 2px;
+      transition: opacity .2s;
+    }
+    .btn-lire:hover { opacity: .55; }
+
+    /* GRILLE */
+    .articles-section {
+      max-width: 1000px; margin: 60px auto 100px;
+      padding: 0 24px;
+    }
+    .articles-header {
+      display: flex; align-items: baseline; justify-content: space-between;
+      margin-bottom: 44px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--pierre);
+    }
+    .articles-header h3 {
+      font-size: 1.2rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--encre);
+    }
+    .voir-tout {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .68rem;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--gris);
+      text-decoration: none;
+      border-bottom: 1px solid var(--pierre);
+      transition: color .2s;
+    }
+    .voir-tout:hover { color: var(--mousse); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+    .card-img {
+      aspect-ratio: 3/2;
+      background: var(--pierre);
+      border-radius: 1px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 18px;
+      opacity: .75;
+    }
+    .card-cat {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .62rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--terre);
+      margin-bottom: 8px;
+    }
+    .card h4 {
+      font-size: 1rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--encre);
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .card p {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .8rem;
+      color: var(--gris);
+      line-height: 1.7;
+    }
+
+    /* RUBRIQUES */
+    .rubriques {
+      background: var(--mousse);
+      padding: 80px 24px;
+      text-align: center;
+    }
+    .rubriques-intro {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .75rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+      margin-bottom: 52px;
+    }
+    .rubriques-grid {
+      max-width: 860px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 1px;
+      background: rgba(255,255,255,.1);
+    }
+    .rubrique-item {
+      padding: 44px 22px;
+      background: var(--mousse);
+      transition: background .25s;
+      cursor: pointer;
+    }
+    .rubrique-item:hover { background: rgba(0,0,0,.1); }
+    .rubrique-icon { font-size: 1.5rem; margin-bottom: 18px; opacity: .8; }
+    .rubrique-item h4 {
+      font-size: 1rem;
+      font-weight: 400;
+      font-style: italic;
+      color: white;
+      margin-bottom: 12px;
+    }
+    .rubrique-item p {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .73rem;
+      color: rgba(255,255,255,.5);
+      line-height: 1.65;
+    }
+
+    /* À PROPOS */
+    .apropos {
+      max-width: 600px; margin: 100px auto;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .apropos-avatar {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: var(--pierre);
+      margin: 0 auto 28px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+    }
+    .apropos h3 {
+      font-size: 1.6rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--mousse);
+      margin-bottom: 18px;
+    }
+    .apropos-deco {
+      width: 28px; height: 1px;
+      background: var(--doux);
+      margin: 20px auto 24px;
+    }
+    .apropos p {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .88rem;
+      color: var(--gris);
+      line-height: 1.9;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--pierre);
+      padding: 28px 52px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-logo {
+      font-style: italic;
+      color: var(--mousse);
+      font-size: .88rem;
+    }
+    .footer-copy {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .68rem;
+      color: var(--doux);
+      letter-spacing: .05em;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">Rencontre au Printemps</span>
+  <ul class="nav-links">
+    <li><a href="#">Visages</a></li>
+    <li><a href="#">Endroits</a></li>
+    <li><a href="#">Ma table</a></li>
+    <li><a href="#">Ce que j'ai vécu</a></li>
+    <li><a href="#">Moi</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Un coin pour retrouver la tranquillité d'esprit</p>
+  <h1>Rencontre<br/>au Printemps</h1>
+  <div class="hero-deco"></div>
+  <p class="hero-sub">Des visages, des endroits, des saveurs — et ce que chaque rencontre m'a appris sur mon propre pays.</p>
+  <p class="hero-scroll">↓ &nbsp; Découvrir</p>
+</section>
+
+<hr class="sep"/>
+
+<!-- FEATURED -->
+<section class="featured">
+  <div class="featured-img">
+    🌿
+    <span class="featured-tag">Ce que j'ai vécu</span>
+  </div>
+  <div class="featured-content">
+    <p class="section-label">À la une</p>
+    <h2>Un dimanche au marché de Bac Ha, ce que les guides ne vous diront jamais</h2>
+    <p>Il était sept heures du matin quand les premières silhouettes en indigo sont apparues sur la colline. Je n'avais pas encore bu mon café. Et déjà, le monde entier semblait là.</p>
+    <a href="#" class="btn-lire">Lire le récit</a>
+  </div>
+</section>
+
+<hr class="sep"/>
+
+<!-- GRILLE -->
+<section class="articles-section">
+  <div class="articles-header">
+    <p class="section-label">Derniers articles</p>
+    <h3>Ce que j'ai envie de partager</h3>
+    <a href="#" class="voir-tout">Tout voir</a>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <div class="card-img">🏮</div>
+      <p class="card-cat">Visages</p>
+      <h4>La femme Dao rouge de Ta Phin — un thé, une heure, une vie</h4>
+      <p>Elle m'a tendu une tasse sans un mot. Puis elle a souri. C'est tout ce qu'il fallait.</p>
+    </div>
+    <div class="card">
+      <div class="card-img">🌾</div>
+      <p class="card-cat">Endroits</p>
+      <h4>Tra Vinh, le Mékong khmer — un Vietnam que personne ne cherche</h4>
+      <p>Pas de foule, pas de boutiques à souvenirs. Juste des pagodes rouges et des cocotiers.</p>
+    </div>
+    <div class="card">
+      <div class="card-img">🍃</div>
+      <p class="card-cat">Ma table</p>
+      <h4>Bánh xèo à Hội An — appris dans une cour intérieure, un après-midi de pluie</h4>
+      <p>La cuisine vietnamienne ne se raconte pas. Elle s'écoute grésiller dans la poêle.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RUBRIQUES -->
+<section class="rubriques">
+  <p class="rubriques-intro">Explorez par rubrique</p>
+  <div class="rubriques-grid">
+    <div class="rubrique-item">
+      <div class="rubrique-icon">👤</div>
+      <h4>Visages</h4>
+      <p>Des rencontres qui changent le regard. Minorités, paysans, artisans — les gens qui font le Vietnam.</p>
+    </div>
+    <div class="rubrique-item">
+      <div class="rubrique-icon">🗺</div>
+      <h4>Endroits</h4>
+      <p>Des lieux que je garde précieusement. Loin des circuits, près de l'essentiel.</p>
+    </div>
+    <div class="rubrique-item">
+      <div class="rubrique-icon">🍃</div>
+      <h4>Ma table</h4>
+      <p>Marchés, échoppes, tables familiales. La cuisine comme une langue que tout le monde comprend.</p>
+    </div>
+    <div class="rubrique-item">
+      <div class="rubrique-icon">✍️</div>
+      <h4>Ce que j'ai vécu</h4>
+      <p>Mes récits complets, mes impressions brutes. Ce que j'emporte longtemps après le retour.</p>
+    </div>
+  </div>
+</section>
+
+<!-- À PROPOS -->
+<section class="apropos">
+  <div class="apropos-avatar">🌸</div>
+  <p class="section-label">Qui je suis</p>
+  <h3>Huyền — guide, voyageuse, curieuse</h3>
+  <div class="apropos-deco"></div>
+  <p>Je suis vietnamienne, francophone, et je travaille dans le tourisme depuis des années. Ce blog n'est pas un guide de voyage. C'est un carnet ouvert — ce que j'observe, ce que je ressens, ce que je veux garder. Le Vietnam m'étonne encore chaque jour. J'ai envie de vous montrer pourquoi.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Rencontre au Printemps</span>
+  <span class="footer-copy">© 2026 Huyền Dinh · rencontreauprints.github.io</span>
+</footer>
+
+</body>
+</html>
